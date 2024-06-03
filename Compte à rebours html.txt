@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compte à rebours</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        #compteRebours { font-size: 2em; margin: 20px; }
+        button { font-size: 1em; margin: 10px; }
+    </style>
+</head>
+<body>
+    <div id="compteRebours">00:15:00</div>
+    <button onclick="startCountdown()">Démarrer</button>
+    <button onclick="stopCountdown()">Arrêter</button>
+    <button onclick="resetCountdown()">Réinitialiser</button>
+
+    <script>
+        let countdownTimer;
+        let countdownTime = 900; // Temps en secondes (ici 5 minutes)
+
+        function startCountdown() {
+            if (!countdownTimer) {
+                countdownTimer = setInterval(updateCountdown, 1000);
+            }
+        }
+
+        function stopCountdown() {
+            clearInterval(countdownTimer);
+            countdownTimer = null;
+        }
+
+        function resetCountdown() {
+            stopCountdown();
+            countdownTime = 900;
+            document.getElementById('compteRebours').textContent = '00:05:00';
+        }
+
+        function updateCountdown() {
+            if (countdownTime > 0) {
+                countdownTime--;
+                let minutes = Math.floor(countdownTime / 60);
+                let seconds = countdownTime % 60;
+                document.getElementById('compteRebours').textContent =
+                    '00:' + (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+            } else {
+                stopCountdown();
+                alert('Le temps est écoulé!');
+            }
+        }
+    </script>
+</body>
+</html>
