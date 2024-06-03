@@ -28,14 +28,14 @@
     var minutes = 15;
 
     // Calculate the total milliseconds for the countdown
-    var totalMilliseconds = minutes * 60 * 15;
+    var totalMilliseconds = minutes * 60 * 1000;
 
     // Update the countdown every 1 second
     var x = setInterval(function() {
 
         // Calculate the minutes and seconds left
-        var minutesLeft = Math.floor(totalMilliseconds / (15 * 60));
-        var secondsLeft = Math.floor((totalMilliseconds % (15 * 60)) / 15);
+        var minutesLeft = Math.floor(totalMilliseconds / (1000 * 60));
+        var secondsLeft = Math.floor((totalMilliseconds % (1000 * 60)) / 1000);
 
         // Display the countdown
         document.getElementById("countdown").innerHTML = minutesLeft + "m " + secondsLeft + "s";
